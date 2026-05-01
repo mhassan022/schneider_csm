@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoStruxure CSM Dashboard — Multi-Client Energy & Automation Monitoring">
+    <title>EcoStruxure™ CSM Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">
+                <svg viewBox="0 0 38 38" fill="none">
+                    <rect width="38" height="38" rx="9" fill="#3DCD58"/>
+                    <path d="M10 26L19 12L28 26H22L19 21L16 26H10Z" fill="white"/>
+                </svg>
+            </div>
+            <div class="brand-text">
+                <span class="brand-title">EcoStruxure</span>
+                <span class="brand-subtitle">CSM Hub</span>
+            </div>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#" class="nav-link active" id="navOverview">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                <span>Overview</span>
+            </a>
+            <a href="#" class="nav-link" id="navCustomers">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                <span>Customers</span>
+            </a>
+            <a href="#" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 21H4a1 1 0 01-1-1V3"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+                <span>Analytics</span>
+            </a>
+            <a href="#" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+                <span>Maintenance</span>
+            </a>
+            <a href="#" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                <span>Schedules</span>
+            </a>
+            <a href="#" class="nav-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span>Reports</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-user">
+                <div class="user-avatar-ring">
+                    <div class="user-avatar-placeholder">MK</div>
+                </div>
+                <div class="user-meta">
+                    <span class="user-name">Mohamed Kamal</span>
+                    <span class="user-role">CSM Lead</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <main class="main" id="main">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="hamburger" id="hamburger" aria-label="Toggle sidebar">
+                    <span></span><span></span><span></span>
+                </button>
+                <div>
+                    <h1 class="topbar-title" id="pageTitle">Customer Success Overview</h1>
+                    <p class="topbar-date" id="liveDate"></p>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <!-- Currency Switcher -->
+                <div class="currency-switcher" id="currencySwitcher">
+                    <button class="curr-btn active" data-curr="USD">$ USD</button>
+                    <button class="curr-btn" data-curr="EUR">€ EUR</button>
+                    <button class="curr-btn" data-curr="EGP">E£ EGP</button>
+                    <div class="curr-indicator"></div>
+                </div>
+                <!-- Sort -->
+                <div class="sort-dropdown">
+                    <button class="sort-btn" id="sortBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h12M3 18h6"/></svg>
+                        Sort
+                    </button>
+                    <div class="sort-menu" id="sortMenu">
+                        <button class="sort-option active" data-sort="name">Name</button>
+                        <button class="sort-option" data-sort="roi">ROI</button>
+                        <button class="sort-option" data-sort="satisfaction">Satisfaction</button>
+                        <button class="sort-option" data-sort="criticality">Criticality</button>
+                        <button class="sort-option" data-sort="region">Region</button>
+                    </div>
+                </div>
+                <!-- Alerts -->
+                <button class="topbar-icon-btn" id="alertsBtn" aria-label="Alerts">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                    <span class="alert-dot"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== OVERVIEW PAGE ===== -->
+        <div class="page" id="overviewPage">
+            <!-- Global KPI Strip -->
+            <section class="kpi-strip" id="kpiStrip">
+                <div class="kpi-card" id="kpiTotalCustomers">
+                    <div class="kpi-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                    <div class="kpi-body">
+                        <span class="kpi-label">Total Customers</span>
+                        <span class="kpi-val">3</span>
+                    </div>
+                </div>
+                <div class="kpi-card" id="kpiAvgRoi">
+                    <div class="kpi-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                    <div class="kpi-body">
+                        <span class="kpi-label">Avg. ROI</span>
+                        <span class="kpi-val" id="avgRoiVal">—</span>
+                    </div>
+                </div>
+                <div class="kpi-card" id="kpiAvgSat">
+                    <div class="kpi-icon yellow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                    <div class="kpi-body">
+                        <span class="kpi-label">Avg. Satisfaction</span>
+                        <span class="kpi-val" id="avgSatVal">—</span>
+                    </div>
+                </div>
+                <div class="kpi-card" id="kpiAlerts">
+                    <div class="kpi-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                    <div class="kpi-body">
+                        <span class="kpi-label">Active Alerts</span>
+                        <span class="kpi-val" id="alertCount">4</span>
+                    </div>
+                </div>
+                <div class="kpi-card" id="kpiRevenue">
+                    <div class="kpi-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                    <div class="kpi-body">
+                        <span class="kpi-label">Total Revenue</span>
+                        <span class="kpi-val" id="totalRevVal">—</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Customer Cards Grid -->
+            <section class="customer-grid" id="customerGrid">
+                <!-- Rendered by JS -->
+            </section>
+
+            <!-- Predictive Alerts & Risk -->
+            <section class="alerts-section" id="alertsSection">
+                <div class="section-header">
+                    <h2>Predictive Alerts & Risk Maintenance</h2>
+                    <span class="live-badge"><span class="live-dot"></span> Live</span>
+                </div>
+                <div class="alerts-grid" id="alertsGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- ===== DRILL-DOWN PAGE ===== -->
+        <div class="page hidden" id="drilldownPage">
+            <button class="back-btn" id="backBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                Back to Overview
+            </button>
+
+            <!-- Customer Header -->
+            <div class="dd-header" id="ddHeader">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Drill-down Grid -->
+            <div class="dd-grid">
+                <!-- Financial Metrics -->
+                <div class="dd-card dd-financial">
+                    <div class="dd-card-head">
+                        <h3>Financial Metrics</h3>
+                    </div>
+                    <div class="dd-chart-wrap">
+                        <canvas id="ddFinancialChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Satisfaction & NPS -->
+                <div class="dd-card dd-satisfaction">
+                    <div class="dd-card-head">
+                        <h3>Satisfaction & NPS</h3>
+                    </div>
+                    <div class="dd-gauge-row">
+                        <div class="gauge-wrap">
+                            <canvas id="ddSatGauge" width="180" height="120"></canvas>
+                            <span class="gauge-label">Satisfaction</span>
+                        </div>
+                        <div class="gauge-wrap">
+                            <canvas id="ddNpsGauge" width="180" height="120"></canvas>
+                            <span class="gauge-label">NPS Score</span>
+                        </div>
+                    </div>
+                    <div class="feedback-list" id="ddFeedback">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- CBM Status -->
+                <div class="dd-card dd-cbm">
+                    <div class="dd-card-head">
+                        <h3>CBM Status</h3>
+                        <span class="live-badge sm"><span class="live-dot"></span> Real-time</span>
+                    </div>
+                    <div class="dd-cbm-list" id="ddCbmList">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Maintenance History -->
+                <div class="dd-card dd-history">
+                    <div class="dd-card-head">
+                        <h3>Maintenance History</h3>
+                    </div>
+                    <div class="dd-timeline" id="ddTimeline">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Upcoming Actions -->
+                <div class="dd-card dd-upcoming">
+                    <div class="dd-card-head">
+                        <h3>Upcoming Actions</h3>
+                    </div>
+                    <ul class="dd-action-list" id="ddActions">
+                        <!-- Rendered by JS -->
+                    </ul>
+                </div>
+
+                <!-- Equipment Overview -->
+                <div class="dd-card dd-equipment">
+                    <div class="dd-card-head">
+                        <h3>Equipment Health</h3>
+                    </div>
+                    <div class="dd-chart-wrap">
+                        <canvas id="ddEquipChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chart.js loaded at end of body for reliability -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
